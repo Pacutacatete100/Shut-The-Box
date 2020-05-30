@@ -1,7 +1,7 @@
 import random
+import itertools
 from Box import Box
-from Die import *
+from Game import *
 
 if __name__ == "__main__":
-    b1 = Box([])
-    print(roll_2_dice())
+    play()
