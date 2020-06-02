@@ -28,12 +28,13 @@ def play():
     playing = True
 
     while playing:
-        choices = []
-        max_piece = box.find_max_piece()
-
         box.print_remaining_pieces()
-        total_roll = roll_die(max_piece)
-        print('you rolled: ' + str(total_roll))
-
+        roll = roll_die(box.find_max_piece())
+        print('you rolled: ' + str(roll))
         choices = ask_numbers_to_remove()
-        box.remove_pieces(choices, total_roll)
+        if box.combination_exists(roll, choices):
+            box.remove_pieces(choices, roll)
+        elif not box.combination_exists(roll, choices):
+            print('Sorry, youre all outta luck! your final score is: ' +
+                  str(sum(box.pieces)))
+            playing = False

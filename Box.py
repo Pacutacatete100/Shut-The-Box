@@ -12,26 +12,26 @@ class Box:
     def find_max_piece(self):
         return max(self.pieces)
 
-    def piece_does_not_exists(self, num):
-        if num not in self.pieces:
-            print('you chose a number that has already been put down')
-            return False
+    def piece_exists(self, num):
+        return num in self.pieces
 
-        return True
+    def combination_exists(self, num, numbers_to_remove):
+        combinations = []
+        combos_tup = [seq for i in range(len(self.pieces), 0, -1)
+                      for seq in itertools.combinations(self.pieces, i) if sum(seq) == num]
+        for c in combos_tup:
+            combinations.append(list(c))
 
-    def addition_is_not_possible(self, num):
-        result = [seq for i in range(len(self.pieces), 0, -1)
-                  for seq in itertools.combinations(self.pieces, i) if sum(seq) == num]
-        if not result:  # if list of combinations is null
-            return False
+        numbers_to_remove.sort()
 
-    def remove_pieces(self, nums_to_remove, num):
-        die_sum = sum(nums_to_remove)
+        for comb in combinations:
+            if numbers_to_remove == comb:
+                return True
 
-        for n in nums_to_remove:
-            if not self.piece_does_not_exists(n):
+    def remove_pieces(self, nums_to_remove_sorted, num):
+        for n in nums_to_remove_sorted:
+            if self.piece_exists(n):
+                self.pieces.remove(n)
+            elif not self.piece_exists(n):
+                print('you chose a number that is no longer available')
                 return
-            else:
-                if die_sum == num:
-                    for i in nums_to_remove:
-                        self.pieces.remove(i)
