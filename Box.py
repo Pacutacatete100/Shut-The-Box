@@ -10,7 +10,10 @@ class Box:
             print(str(i) + " ", end='')
 
     def find_max_piece(self):
-        return max(self.pieces)
+        if len(self.pieces) >= 2:
+            return max(self.pieces)
+        if len(self.pieces) == 1:
+            return self.pieces[0]
 
     def piece_exists(self, num):
         return num in self.pieces
