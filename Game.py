@@ -20,6 +20,7 @@ def ask_numbers_to_remove():
     for n in numbers_s_list:
         numbers.append(int(n))
 
+    numbers.sort()
     return numbers
 
 
@@ -31,10 +32,10 @@ def play():
         box.print_remaining_pieces()
         roll = roll_die(box.find_max_piece())
         print('you rolled: ' + str(roll))
-        choices = ask_numbers_to_remove()
-        if box.combination_exists(roll, choices):
-            box.remove_pieces(choices, roll)
-        elif not box.combination_exists(roll, choices):
-            print('Sorry, youre all outta luck! your final score is: ' +
+        if not box.combination_not_possible(roll):
+            choices = ask_numbers_to_remove()
+            box.remove_pieces(choices)
+        elif box.combination_not_possible(roll):
+            print('Sorry! you\'re all out of luck! Final score is: ' +
                   str(sum(box.pieces)))
             playing = False
