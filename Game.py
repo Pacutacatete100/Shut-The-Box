@@ -31,7 +31,7 @@ def play():
     while playing:
         box.print_remaining_pieces()
         roll = roll_die(box.find_max_piece())
-        print('you rolled: ' + str(roll))
+        print('\nYou rolled: ' + str(roll))
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
             box.remove_pieces(choices)

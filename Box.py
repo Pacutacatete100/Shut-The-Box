@@ -7,7 +7,7 @@ class Box:
 
     def print_remaining_pieces(self):
         for i in self.pieces:
-            print(i)
+            print(str(i) + " ", end='')
 
     def find_max_piece(self):
         return max(self.pieces)
