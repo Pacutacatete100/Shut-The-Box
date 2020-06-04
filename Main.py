@@ -5,4 +5,4 @@ from GameUtils import *
 from GameVariants import *
 
 if __name__ == "__main__":
-    play()
+    two_to_go()

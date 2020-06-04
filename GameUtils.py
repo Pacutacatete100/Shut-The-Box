@@ -22,4 +22,3 @@ def ask_numbers_to_remove():
 
     numbers.sort()
     return numbers
-
