@@ -14,7 +14,9 @@ def play_base_game():
             choices = ask_numbers_to_remove()
             if sum(choices) == roll:
                 box.remove_pieces(choices)
-
+                if len(box.pieces) == 0:
+                    print('YOU WIN')
+                    playing = False
             elif sum(choices) != roll:
                 print('doesnt add up')
         elif box.combination_not_possible(roll):
@@ -43,7 +45,9 @@ def two_to_go():
             choices = ask_numbers_to_remove()
             if sum(choices) == roll:
                 box.remove_pieces(choices)
-
+                if len(box.pieces) == 0:
+                    print('YOU WIN')
+                    playing = False
             elif sum(choices) != roll:
                 print('doesnt add up')
         elif box.combination_not_possible(roll):
@@ -72,7 +76,9 @@ def three_to_go():
             choices = ask_numbers_to_remove()
             if sum(choices) == roll:
                 box.remove_pieces(choices)
-
+                if len(box.pieces) == 0:
+                    print('YOU WIN')
+                    playing = False
             elif sum(choices) != roll:
                 print('doesnt add up')
         elif box.combination_not_possible(roll):
@@ -95,7 +101,9 @@ def three_down_extreme():
             choices = ask_numbers_to_remove()
             if sum(choices) == roll:
                 box.remove_pieces(choices)
-
+                if len(box.pieces) == 0:
+                    print('YOU WIN')
+                    playing = False
             elif sum(choices) != roll:
                 print('doesnt add up')
         elif box.combination_not_possible(roll):
@@ -118,7 +126,9 @@ def against_all_odds():
             choices = ask_numbers_to_remove()
             if sum(choices) == roll:
                 box.remove_pieces(choices)
-
+                if len(box.pieces) == 0:
+                    print('YOU WIN')
+                    playing = False
             elif sum(choices) != roll:
                 print('doesnt add up')
         elif box.combination_not_possible(roll):
@@ -141,7 +151,9 @@ def even_stevens():
             choices = ask_numbers_to_remove()
             if sum(choices) == roll:
                 box.remove_pieces(choices)
-
+                if len(box.pieces) == 0:
+                    print('YOU WIN')
+                    playing = False
             elif sum(choices) != roll:
                 print('doesnt add up')
         elif box.combination_not_possible(roll):
@@ -164,7 +176,9 @@ def full_house():
             choices = ask_numbers_to_remove()
             if sum(choices) == roll:
                 box.remove_pieces(choices)
-
+                if len(box.pieces) == 0:
+                    print('YOU WIN')
+                    playing = False
             elif sum(choices) != roll:
                 print('doesnt add up')
         elif box.combination_not_possible(roll):
