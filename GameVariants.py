@@ -185,3 +185,18 @@ def full_house():
             print('Sorry! you\'re all out of luck! Final score is: ' +
                   str(sum(box.pieces)))
             playing = False
+
+
+def thai_style():
+    box = Box([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    playing = True
+
+    print('Thai style:  only cover one tile matching one of the dice or their sum')
+
+    while playing:
+        box.print_remaining_pieces()
+        roll1 = roll_die(6)
+        roll2 = roll_die(6)
+        total_roll = roll1 + roll2
+        print('you rolled a ' + str(roll1) + ' and a ' + str(roll2))
+        choice = ask_numbers_to_remove()
