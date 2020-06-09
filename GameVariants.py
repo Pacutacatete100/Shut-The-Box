@@ -8,7 +8,10 @@ def play_base_game():
 
     while playing:
         box.print_remaining_pieces()
-        roll = roll_die(box.find_max_piece())
+        if box.find_max_piece() > 6:
+            roll = roll_die(6, 2)
+        elif box.find_max_piece() <= 6:
+            roll = roll_die(6, 1)
         print('\nYou rolled: ' + str(roll))
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
@@ -31,7 +34,7 @@ def two_to_go():
 
     print('2 to go: the 2 is automatically removed, if you roll 4 on your first roll, you lose the game')
 
-    roll = roll_die(box.find_max_piece())
+    roll = roll_die(6, 2)
     if roll == 4:
         print('Sorry! you\'re all out of luck! Final score is: ' +
               str(sum(box.pieces)))
@@ -39,7 +42,10 @@ def two_to_go():
 
     while playing:
         box.print_remaining_pieces()
-        roll = roll_die(box.find_max_piece())
+        if box.find_max_piece() > 6:
+            roll = roll_die(6, 2)
+        elif box.find_max_piece() <= 6:
+            roll = roll_die(6, 1)
         print('\nYou rolled: ' + str(roll))
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
@@ -62,7 +68,7 @@ def three_to_go():
 
     print('3 to go: the 3 is automatically removed, if you roll 4 on your first roll, you lose the game')
 
-    roll = roll_die(box.find_max_piece())
+    roll = roll_die(6, 2)
     if roll == 4:
         print('Sorry! you\'re all out of luck! Final score is: ' +
               str(sum(box.pieces)))
@@ -70,7 +76,10 @@ def three_to_go():
 
     while playing:
         box.print_remaining_pieces()
-        roll = roll_die(box.find_max_piece())
+        if box.find_max_piece() > 6:
+            roll = roll_die(6, 2)
+        elif box.find_max_piece() <= 6:
+            roll = roll_die(6, 1)
         print('\nYou rolled: ' + str(roll))
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
@@ -95,7 +104,10 @@ def three_down_extreme():
 
     while playing:
         box.print_remaining_pieces()
-        roll = roll_die(box.find_max_piece())
+        if box.find_max_piece() > 6:
+            roll = roll_die(6, 2)
+        elif box.find_max_piece() <= 6:
+            roll = roll_die(6, 1)
         print('\nYou rolled: ' + str(roll))
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
@@ -120,7 +132,10 @@ def against_all_odds():
 
     while playing:
         box.print_remaining_pieces()
-        roll = roll_die(box.find_max_piece())
+        if box.find_max_piece() > 6:
+            roll = roll_die(6, 2)
+        elif box.find_max_piece() <= 6:
+            roll = roll_die(6, 1)
         print('\nYou rolled: ' + str(roll))
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
@@ -145,7 +160,10 @@ def even_stevens():
 
     while playing:
         box.print_remaining_pieces()
-        roll = roll_die(box.find_max_piece())
+        if box.find_max_piece() > 6:
+            roll = roll_die(6, 2)
+        elif box.find_max_piece() <= 6:
+            roll = roll_die(6, 1)
         print('\nYou rolled: ' + str(roll))
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
@@ -170,7 +188,10 @@ def full_house():
 
     while playing:
         box.print_remaining_pieces()
-        roll = roll_die(box.find_max_piece())
+        if box.find_max_piece() > 6:
+            roll = roll_die(6, 2)
+        elif box.find_max_piece() <= 6:
+            roll = roll_die(6, 1)
         print('\nYou rolled: ' + str(roll))
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
@@ -187,16 +208,126 @@ def full_house():
             playing = False
 
 
+def digital():
+    box = Box([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    playing = True
+    score = ''
+
+    while playing:
+        box.print_remaining_pieces()
+        if box.find_max_piece() > 6:
+            roll = roll_die(6, 2)
+        elif box.find_max_piece() <= 6:
+            roll = roll_die(6, 1)
+        print('\nYou rolled: ' + str(roll))
+        if not box.combination_not_possible(roll):
+            choices = ask_numbers_to_remove()
+            if sum(choices) == roll:
+                box.remove_pieces(choices)
+                if len(box.pieces) == 0:
+                    print('YOU WIN')
+                    playing = False
+            elif sum(choices) != roll:
+                print('doesnt add up')
+        elif box.combination_not_possible(roll):
+            for p in box.pieces:
+                score += str(p)
+            print('Sorry! you\'re all out of luck! Final score is: ' + score)
+            playing = False
+
+
 def thai_style():
     box = Box([1, 2, 3, 4, 5, 6, 7, 8, 9])
     playing = True
 
-    print('Thai style:  only cover one tile matching one of the dice or their sum')
+    print('you can only chose one of the numbers you rolled or their sum')
 
     while playing:
         box.print_remaining_pieces()
-        roll1 = roll_die(6)
-        roll2 = roll_die(6)
-        total_roll = roll1 + roll2
-        print('you rolled a ' + str(roll1) + ' and a ' + str(roll2))
-        choice = ask_numbers_to_remove()
+        roll1 = roll_die(6, 1)
+        roll2 = roll_die(6, 1)
+        total = roll1 + roll2
+
+        possibilities = []
+
+        possibilities.append(roll1)
+        possibilities.append(roll2)
+        possibilities.append(total)
+
+        def roll_piece_exists(possibilities, pieces): return any(
+            i in pieces for i in possibilities)
+
+        print('\nYou rolled a ' + str(roll1) + ' and a ' +
+              str(roll2) + '. Total = ' + str(total))
+
+        if roll_piece_exists(possibilities, box.pieces):
+            choices = ask_numbers_to_remove()
+            if choices[0] == roll1 or choices[0] == roll2 or sum(choices) == total:
+                box.remove_pieces(choices)
+                if len(box.pieces) == 0:
+                    print('YOU WIN')
+                    playing = False
+            else:
+                print('that number does not exist anymore')
+        elif not roll_piece_exists(possibilities, box.pieces):
+            print('Sorry! you\'re all out of luck! Final score is: ' +
+                  str(sum(box.pieces)))
+            playing = False
+
+
+def the_300():
+    box = Box([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+               14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24])
+    playing = True
+
+    print('24 numbers to play with, 4 die (initially)')
+
+    while playing:
+        box.print_remaining_pieces()
+        if 19 <= box.find_max_piece() <= 24:
+            roll = roll_die(6, 4)
+        if 13 <= box.find_max_piece() <= 18:
+            roll = roll_die(6, 3)
+        if 7 <= box.find_max_piece() <= 12:
+            roll = roll_die(6, 2)
+        if 1 <= box.find_max_piece() <= 6:
+            roll = roll_die(6, 1)
+        print('\nYou rolled: ' + str(roll))
+        if not box.combination_not_possible(roll):
+            choices = ask_numbers_to_remove()
+            if sum(choices) == roll:
+                box.remove_pieces(choices)
+                if len(box.pieces) == 0:
+                    print('YOU WIN')
+                    playing = False
+            elif sum(choices) != roll:
+                print('doesnt add up')
+        elif box.combination_not_possible(roll):
+            print('Sorry! you\'re all out of luck! Final score is: ' +
+                  str(sum(box.pieces)))
+            playing = False
+
+
+def twenty_twelve():
+    box = Box([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+    playing = True
+
+    print('20-sided die playing 12 numbers')
+
+    while playing:
+        box.print_remaining_pieces()
+        roll = roll_die(20, 1)
+        print('\nYou rolled: ' + str(roll))
+        if not box.combination_not_possible(roll):
+            choices = ask_numbers_to_remove()
+            if sum(choices) == roll:
+                box.remove_pieces(choices)
+                if len(box.pieces) == 0:
+                    print('YOU WIN')
+                    playing = False
+            elif sum(choices) != roll:
+                print('doesnt add up')
+        elif box.combination_not_possible(roll):
+            print('Sorry! you\'re all out of luck! Final score is: ' +
+                  str(sum(box.pieces)))
+            playing = False

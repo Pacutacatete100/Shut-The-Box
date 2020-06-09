@@ -2,14 +2,13 @@ import random
 from Box import Box
 
 
-def roll_die(max_piece):
-    if max_piece <= 6:
-        return random.randint(1, 6)
-    if max_piece > 6:
-        num1 = random.randint(1, 6)
-        num2 = random.randint(1, 6)
+def roll_die(num_sides, num_dice):
+    roll_total = 0
 
-        return num1 + num2
+    for _ in range(num_dice):
+        roll_total += random.randint(1, num_sides)
+
+    return roll_total
 
 
 def ask_numbers_to_remove():
