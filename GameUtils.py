@@ -11,9 +11,15 @@ def roll_die(num_sides, num_dice):
     return roll_total
 
 
+def at_least_one_exists(possibilities, pieces):
+    return any(i in pieces for i in possibilities)
+
+
 def ask_numbers_to_remove():
     numbers_string = input(
         "input the numbers you would like to remove (separate by spaces)")
+    if numbers_string == 'end':
+        return 'end'
     numbers_s_list = numbers_string.split()
     numbers = []
     for n in numbers_s_list:
