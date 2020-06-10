@@ -33,3 +33,7 @@ class Box:
                 self.pieces.remove(n)
             else:
                 print('number no longer available')
+
+    def loss_message(self):
+        print('Sorry! you\'re all out of luck! Final score is: ' +
+              str(sum(self.pieces)))

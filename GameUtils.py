@@ -17,7 +17,7 @@ def at_least_one_exists(possibilities, pieces):
 
 def ask_numbers_to_remove():
     numbers_string = input(
-        "input the numbers you would like to remove (separate by spaces)")
+        "input the numbers you would like to remove (separate by spaces) or type \'end\' to tned the game")
     if numbers_string == 'end':
         return 'end'
     numbers_s_list = numbers_string.split()

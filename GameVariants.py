@@ -27,8 +27,7 @@ def play_base_game():
                 elif sum(choices) != roll:
                     print('doesnt add up')
         elif box.combination_not_possible(roll):
-            print('Sorry! you\'re all out of luck! Final score is: ' +
-                  str(sum(box.pieces)))
+            box.loss_message()
             playing = False
 
 
@@ -65,8 +64,7 @@ def two_to_go():
                 elif sum(choices) != roll:
                     print('doesnt add up')
         elif box.combination_not_possible(roll):
-            print('Sorry! you\'re all out of luck! Final score is: ' +
-                  str(sum(box.pieces)))
+            box.loss_message()
             playing = False
 
 
@@ -103,8 +101,7 @@ def three_to_go():
                 elif sum(choices) != roll:
                     print('doesnt add up')
         elif box.combination_not_possible(roll):
-            print('Sorry! you\'re all out of luck! Final score is: ' +
-                  str(sum(box.pieces)))
+            box.loss_message()
             playing = False
 
 
@@ -135,8 +132,7 @@ def three_down_extreme():
                 elif sum(choices) != roll:
                     print('doesnt add up')
         elif box.combination_not_possible(roll):
-            print('Sorry! you\'re all out of luck! Final score is: ' +
-                  str(sum(box.pieces)))
+            box.loss_message()
             playing = False
 
 
@@ -167,8 +163,7 @@ def against_all_odds():
                 elif sum(choices) != roll:
                     print('doesnt add up')
         elif box.combination_not_possible(roll):
-            print('Sorry! you\'re all out of luck! Final score is: ' +
-                  str(sum(box.pieces)))
+            box.loss_message()
             playing = False
 
 
@@ -199,8 +194,7 @@ def even_stevens():
                 elif sum(choices) != roll:
                     print('doesnt add up')
         elif box.combination_not_possible(roll):
-            print('Sorry! you\'re all out of luck! Final score is: ' +
-                  str(sum(box.pieces)))
+            box.loss_message()
             playing = False
 
 
@@ -231,8 +225,7 @@ def full_house():
                 elif sum(choices) != roll:
                     print('doesnt add up')
         elif box.combination_not_possible(roll):
-            print('Sorry! you\'re all out of luck! Final score is: ' +
-                  str(sum(box.pieces)))
+            box.loss_message()
             playing = False
 
 
@@ -303,8 +296,7 @@ def thai_style():
                 elif (sum(choices) != roll1 or sum(choices) != roll2) or (sum(choices) != total):
                     print('you cant chose that number')
         elif not at_least_one_exists(possibilities, box.pieces):
-            print('Sorry! you\'re all out of luck! Final score is: ' +
-                  str(sum(box.pieces)))
+            box.loss_message()
             playing = False
 
 
@@ -340,8 +332,7 @@ def the_300():
                 elif sum(choices) != roll:
                     print('doesnt add up')
         elif box.combination_not_possible(roll):
-            print('Sorry! you\'re all out of luck! Final score is: ' +
-                  str(sum(box.pieces)))
+            box.loss_message()
             playing = False
 
 
@@ -369,6 +360,5 @@ def twenty_twelve():
                 elif sum(choices) != roll:
                     print('doesnt add up')
         elif box.combination_not_possible(roll):
-            print('Sorry! you\'re all out of luck! Final score is: ' +
-                  str(sum(box.pieces)))
+            box.loss_message()
             playing = False
