@@ -9,9 +9,11 @@ def play_base_game():
     while playing:
         box.print_remaining_pieces()
         if box.find_max_piece() > 6:
-            roll = roll_die(6, 2)
+            roll_generator = roll_die(6, 2)
+            roll = next(roll_generator)
         elif box.find_max_piece() <= 6:
-            roll = roll_die(6, 1)
+            roll_generator = roll_die(6, 1)
+            roll = next(roll_generator)
         print('\nYou rolled: ' + str(roll))
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
@@ -37,7 +39,8 @@ def two_to_go():
 
     print('2 to go: the 2 is automatically removed, if you roll 4 on your first roll, you lose the game')
 
-    roll = roll_die(6, 2)
+    roll_generator = roll_die(6, 2)
+    roll = next(roll_generator)
     if roll == 4:
         print('Sorry! you\'re all out of luck! Final score is: ' +
               box.final_score())
@@ -46,9 +49,11 @@ def two_to_go():
     while playing:
         box.print_remaining_pieces()
         if box.find_max_piece() > 6:
-            roll = roll_die(6, 2)
+            roll_generator = roll_die(6, 2)
+            roll = next(roll_generator)
         elif box.find_max_piece() <= 6:
-            roll = roll_die(6, 1)
+            roll_generator = roll_die(6, 1)
+            roll = next(roll_generator)
         print('\nYou rolled: ' + str(roll))
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
@@ -74,7 +79,8 @@ def three_to_go():
 
     print('3 to go: the 3 is automatically removed, if you roll 4 on your first roll, you lose the game')
 
-    roll = roll_die(6, 2)
+    roll_generator = roll_die(6, 2)
+    roll = next(roll_generator)
     if roll == 4:
         print('Sorry! you\'re all out of luck! Final score is: ' +
               box.final_score())
@@ -83,9 +89,11 @@ def three_to_go():
     while playing:
         box.print_remaining_pieces()
         if box.find_max_piece() > 6:
-            roll = roll_die(6, 2)
+            roll_generator = roll_die(6, 2)
+            roll = next(roll_generator)
         elif box.find_max_piece() <= 6:
-            roll = roll_die(6, 1)
+            roll_generator = roll_die(6, 1)
+            roll = next(roll_generator)
         print('\nYou rolled: ' + str(roll))
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
@@ -114,9 +122,11 @@ def three_down_extreme():
     while playing:
         box.print_remaining_pieces()
         if box.find_max_piece() > 6:
-            roll = roll_die(6, 2)
+            roll_generator = roll_die(6, 2)
+            roll = next(roll_generator)
         elif box.find_max_piece() <= 6:
-            roll = roll_die(6, 1)
+            roll_generator = roll_die(6, 1)
+            roll = next(roll_generator)
         print('\nYou rolled: ' + str(roll))
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
@@ -145,9 +155,11 @@ def against_all_odds():
     while playing:
         box.print_remaining_pieces()
         if box.find_max_piece() > 6:
-            roll = roll_die(6, 2)
+            roll_generator = roll_die(6, 2)
+            roll = next(roll_generator)
         elif box.find_max_piece() <= 6:
-            roll = roll_die(6, 1)
+            roll_generator = roll_die(6, 1)
+            roll = next(roll_generator)
         print('\nYou rolled: ' + str(roll))
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
@@ -176,9 +188,11 @@ def even_stevens():
     while playing:
         box.print_remaining_pieces()
         if box.find_max_piece() > 6:
-            roll = roll_die(6, 2)
+            roll_generator = roll_die(6, 2)
+            roll = next(roll_generator)
         elif box.find_max_piece() <= 6:
-            roll = roll_die(6, 1)
+            roll_generator = roll_die(6, 1)
+            roll = next(roll_generator)
         print('\nYou rolled: ' + str(roll))
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
@@ -207,9 +221,11 @@ def full_house():
     while playing:
         box.print_remaining_pieces()
         if box.find_max_piece() > 6:
-            roll = roll_die(6, 2)
+            roll_generator = roll_die(6, 2)
+            roll = next(roll_generator)
         elif box.find_max_piece() <= 6:
-            roll = roll_die(6, 1)
+            roll_generator = roll_die(6, 1)
+            roll = next(roll_generator)
         print('\nYou rolled: ' + str(roll))
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
@@ -237,9 +253,11 @@ def digital():
     while playing:
         box.print_remaining_pieces()
         if box.find_max_piece() > 6:
-            roll = roll_die(6, 2)
+            roll_generator = roll_die(6, 2)
+            roll = next(roll_generator)
         elif box.find_max_piece() <= 6:
-            roll = roll_die(6, 1)
+            roll_generator = roll_die(6, 1)
+            roll = next(roll_generator)
         print('\nYou rolled: ' + str(roll))
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
@@ -269,8 +287,11 @@ def thai_style():
 
     while playing:
         box.print_remaining_pieces()
-        roll1 = roll_die(6, 1)
-        roll2 = roll_die(6, 1)
+        roll_generator = roll_die(6, 1)
+        roll1 = next(roll_generator)
+        roll_generator = roll_die(6, 1)
+        roll2 = next(roll_generator)
+
         total = roll1 + roll2
 
         possibilities = []
@@ -310,13 +331,17 @@ def the_300():
     while playing:
         box.print_remaining_pieces()
         if 19 <= box.find_max_piece() <= 24:
-            roll = roll_die(6, 4)
+            roll_generator = roll_die(6, 4)
+            roll = next(roll_generator)
         if 13 <= box.find_max_piece() <= 18:
-            roll = roll_die(6, 3)
+            roll_generator = roll_die(6, 3)
+            roll = next(roll_generator)
         if 7 <= box.find_max_piece() <= 12:
-            roll = roll_die(6, 2)
+            roll_generator = roll_die(6, 2)
+            roll = next(roll_generator)
         if 1 <= box.find_max_piece() <= 6:
-            roll = roll_die(6, 1)
+            roll_generator = roll_die(6, 1)
+            roll = next(roll_generator)
         print('\nYou rolled: ' + str(roll))
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
@@ -344,7 +369,8 @@ def twenty_twelve():
 
     while playing:
         box.print_remaining_pieces()
-        roll = roll_die(20, 1)
+        roll_generator = roll_die(20, 1)
+        roll = next(roll_generator)
         print('\nYou rolled: ' + str(roll))
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()

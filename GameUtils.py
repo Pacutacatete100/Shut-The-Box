@@ -3,12 +3,8 @@ from Box import Box
 
 
 def roll_die(num_sides, num_dice):
-    roll_total = 0
-
-    for _ in range(num_dice):
-        roll_total += random.randint(1, num_sides)
-
-    return roll_total
+    while True:
+        yield sum(random.randint(1, num_sides) for i in range(num_dice))
 
 
 def at_least_one_exists(possibilities, pieces):
