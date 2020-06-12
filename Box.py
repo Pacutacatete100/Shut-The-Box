@@ -42,3 +42,6 @@ class Box:
     def loss_message(self):
         print('Sorry! you\'re all out of luck! Final score is: ' +
               str(sum(self.pieces)))
+
+    def final_score(self):
+        return str(sum(self.pieces))

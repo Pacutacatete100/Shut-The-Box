@@ -16,7 +16,7 @@ def play_base_game():
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
             if choices == 'end':
-                print('You ended the game, final score is ' + str(sum(box.pieces)))
+                print('You ended the game, final score is ' + box.final_score())
                 playing = False
             else:
                 if sum(choices) == roll:
@@ -40,7 +40,7 @@ def two_to_go():
     roll = roll_die(6, 2)
     if roll == 4:
         print('Sorry! you\'re all out of luck! Final score is: ' +
-              str(sum(box.pieces)))
+              box.final_score())
         return
 
     while playing:
@@ -53,7 +53,7 @@ def two_to_go():
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
             if choices == 'end':
-                print('You ended the game, final score is ' + str(sum(box.pieces)))
+                print('You ended the game, final score is ' + box.final_score())
                 playing = False
             else:
                 if sum(choices) == roll:
@@ -77,7 +77,7 @@ def three_to_go():
     roll = roll_die(6, 2)
     if roll == 4:
         print('Sorry! you\'re all out of luck! Final score is: ' +
-              str(sum(box.pieces)))
+              box.final_score())
         return
 
     while playing:
@@ -90,7 +90,7 @@ def three_to_go():
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
             if choices == 'end':
-                print('You ended the game, final score is ' + str(sum(box.pieces)))
+                print('You ended the game, final score is ' + box.final_score())
                 playing = False
             else:
                 if sum(choices) == roll:
@@ -121,7 +121,7 @@ def three_down_extreme():
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
             if choices == 'end':
-                print('You ended the game, final score is ' + str(sum(box.pieces)))
+                print('You ended the game, final score is ' + box.final_score())
                 playing = False
             else:
                 if sum(choices) == roll:
@@ -152,7 +152,7 @@ def against_all_odds():
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
             if choices == 'end':
-                print('You ended the game, final score is ' + str(sum(box.pieces)))
+                print('You ended the game, final score is ' + box.final_score())
                 playing = False
             else:
                 if sum(choices) == roll:
@@ -183,7 +183,7 @@ def even_stevens():
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
             if choices == 'end':
-                print('You ended the game, final score is ' + str(sum(box.pieces)))
+                print('You ended the game, final score is ' + box.final_score())
                 playing = False
             else:
                 if sum(choices) == roll:
@@ -214,7 +214,7 @@ def full_house():
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
             if choices == 'end':
-                print('You ended the game, final score is ' + str(sum(box.pieces)))
+                print('You ended the game, final score is ' + box.final_score())
                 playing = False
             else:
                 if sum(choices) == roll:
@@ -244,7 +244,7 @@ def digital():
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
             if choices == 'end':
-                print('You ended the game, final score is ' + str(sum(box.pieces)))
+                print('You ended the game, final score is ' + box.final_score())
                 playing = False
             else:
                 if sum(choices) == roll:
@@ -285,7 +285,7 @@ def thai_style():
         if at_least_one_exists(possibilities, box.pieces):
             choices = ask_numbers_to_remove()
             if choices == 'end':
-                print('You ended the game, final score is ' + str(sum(box.pieces)))
+                print('You ended the game, final score is ' + box.final_score())
                 playing = False
             else:
                 if (sum(choices) == roll1 or sum(choices) == roll2) or (sum(choices) == total):
@@ -321,7 +321,7 @@ def the_300():
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
             if choices == 'end':
-                print('You ended the game, final score is ' + str(sum(box.pieces)))
+                print('You ended the game, final score is ' + box.final_score())
                 playing = False
             else:
                 if sum(choices) == roll:
@@ -349,7 +349,7 @@ def twenty_twelve():
         if not box.combination_not_possible(roll):
             choices = ask_numbers_to_remove()
             if choices == 'end':
-                print('You ended the game, final score is ' + str(sum(box.pieces)))
+                print('You ended the game, final score is ' + box.final_score())
                 playing = False
             else:
                 if sum(choices) == roll:
