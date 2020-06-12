@@ -18,14 +18,19 @@ class Box:
     def piece_exists(self, num):
         return num in self.pieces
 
-    def combination_not_possible(self, num):
-        combinations = []
-        combos_tup = [seq for i in range(len(self.pieces), 0, -1)
-                      for seq in itertools.combinations(self.pieces, i) if sum(seq) == num]
-        for c in combos_tup:
-            combinations.append(list(c))
+    def combinations(self, numbers, target, partial=[], partial_sum=0):
+        if partial_sum == target:
+            yield partial
+        if partial_sum >= target:
+            return
+        for i, n in enumerate(numbers):
+            remaining = numbers[i + 1:]
+            yield from self.combinations(remaining, target, partial + [n], partial_sum + n)
 
-        return not combinations
+    def combination_not_possible(self, roll):
+        combo_list = list(self.combinations(self.pieces, roll))
+
+        return not combo_list
 
     def remove_pieces(self, nums_to_remove):
         for n in nums_to_remove:

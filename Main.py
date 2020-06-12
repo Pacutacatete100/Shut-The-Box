@@ -4,7 +4,9 @@ from Box import Box
 from GameUtils import *
 from GameVariants import *
 
+
 if __name__ == "__main__":
+
     print('1. Normal Game')
     print('2. 2 To Go: the 2 is automatically removed, if you roll 4 on your first roll, you lose the game')
     print('3. 3 To To: the 3 is automatically removed, if you roll 4 on your first roll, you lose the game')
