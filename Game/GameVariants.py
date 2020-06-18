@@ -28,13 +28,13 @@ def play_base_game():
                 change_roll = False
                 print('Oops, Looks like you forgot to type a number')
             else:
-                if sum(choices) == roll:
+                if sum(choices) == roll and all(elem in box.pieces for elem in choices):
                     box.remove_pieces(choices)
                     change_roll = True
                     if len(box.pieces) == 0:
                         print('YOU WIN')
                         playing = False
-                elif sum(choices) != roll:
+                elif sum(choices) != roll or any(elem not in box.pieces for elem in choices):
                     print('doesnt add up')
                     change_roll = False
         elif box.combination_not_possible(roll):
@@ -77,13 +77,13 @@ def two_to_go():
                 change_roll = False
                 print('Oops, Looks like you forgot to type a number')
             else:
-                if sum(choices) == roll:
+                if sum(choices) == roll and all(elem in box.pieces for elem in choices):
                     box.remove_pieces(choices)
                     change_roll = True
                     if len(box.pieces) == 0:
                         print('YOU WIN')
                         playing = False
-                elif sum(choices) != roll:
+                elif sum(choices) != roll or any(elem not in box.pieces for elem in choices):
                     print('doesnt add up')
                     change_roll = False
         elif box.combination_not_possible(roll):
@@ -126,13 +126,13 @@ def three_to_go():
                 change_roll = False
                 print('Oops, Looks like you forgot to type a number')
             else:
-                if sum(choices) == roll:
+                if sum(choices) == roll and all(elem in box.pieces for elem in choices):
                     box.remove_pieces(choices)
                     change_roll = True
                     if len(box.pieces) == 0:
                         print('YOU WIN')
                         playing = False
-                elif sum(choices) != roll:
+                elif sum(choices) != roll or any(elem not in box.pieces for elem in choices):
                     print('doesnt add up')
                     change_roll = False
         elif box.combination_not_possible(roll):
@@ -168,13 +168,13 @@ def three_down_extreme():
                 change_roll = False
                 print('Oops, Looks like you forgot to type a number')
             else:
-                if sum(choices) == roll:
+                if sum(choices) == roll and all(elem in box.pieces for elem in choices):
                     box.remove_pieces(choices)
                     change_roll = True
                     if len(box.pieces) == 0:
                         print('YOU WIN')
                         playing = False
-                elif sum(choices) != roll:
+                elif sum(choices) != roll or any(elem not in box.pieces for elem in choices):
                     print('doesnt add up')
                     change_roll = False
         elif box.combination_not_possible(roll):
@@ -210,13 +210,13 @@ def against_all_odds():
                 change_roll = False
                 print('Oops, Looks like you forgot to type a number')
             else:
-                if sum(choices) == roll:
+                if sum(choices) == roll and all(elem in box.pieces for elem in choices):
                     box.remove_pieces(choices)
                     change_roll = True
                     if len(box.pieces) == 0:
                         print('YOU WIN')
                         playing = False
-                elif sum(choices) != roll:
+                elif sum(choices) != roll or any(elem not in box.pieces for elem in choices):
                     print('doesnt add up')
                     change_roll = False
         elif box.combination_not_possible(roll):
@@ -252,13 +252,13 @@ def even_stevens():
                 change_roll = False
                 print('Oops, Looks like you forgot to type a number')
             else:
-                if sum(choices) == roll:
+                if sum(choices) == roll and all(elem in box.pieces for elem in choices):
                     box.remove_pieces(choices)
                     change_roll = True
                     if len(box.pieces) == 0:
                         print('YOU WIN')
                         playing = False
-                elif sum(choices) != roll:
+                elif sum(choices) != roll or any(elem not in box.pieces for elem in choices):
                     print('doesnt add up')
                     change_roll = False
         elif box.combination_not_possible(roll):
@@ -294,13 +294,13 @@ def full_house():
                 change_roll = False
                 print('Oops, Looks like you forgot to type a number')
             else:
-                if sum(choices) == roll:
+                if sum(choices) == roll and all(elem in box.pieces for elem in choices):
                     box.remove_pieces(choices)
                     change_roll = True
                     if len(box.pieces) == 0:
                         print('YOU WIN')
                         playing = False
-                elif sum(choices) != roll:
+                elif sum(choices) != roll or any(elem not in box.pieces for elem in choices):
                     print('doesnt add up')
                     change_roll = False
         elif box.combination_not_possible(roll):
@@ -338,13 +338,13 @@ def digital():
                 change_roll = False
                 print('Oops, Looks like you forgot to type a number')
             else:
-                if sum(choices) == roll:
+                if sum(choices) == roll and all(elem in box.pieces for elem in choices):
                     box.remove_pieces(choices)
                     change_roll = True
                     if len(box.pieces) == 0:
                         print('YOU WIN')
                         playing = False
-                elif sum(choices) != roll:
+                elif sum(choices) != roll or any(elem not in box.pieces for elem in choices):
                     print('doesnt add up')
                     change_roll = False
         elif box.combination_not_possible(roll):
@@ -389,13 +389,13 @@ def thai_style():
                 print('You ended the game, final score is ' + box.final_score())
                 playing = False
             else:
-                if (sum(choices) == roll1 or sum(choices) == roll2) or (sum(choices) == total):
+                if sum(choices) == roll and all(elem in box.pieces for elem in choices):
                     box.remove_pieces(choices)
                     change_roll = True
                     if len(box.pieces) == 0:
                         print('YOU WIN')
                         playing = False
-                elif (sum(choices) != roll1 or sum(choices) != roll2) or (sum(choices) != total):
+                elif sum(choices) != roll or any(elem not in box.pieces for elem in choices):
                     print('you cant chose that number')
                     change_roll = False
         elif not at_least_one_exists(possibilities, box.pieces):
@@ -440,13 +440,13 @@ def the_300():
                 change_roll = False
                 print('Oops, Looks like you forgot to type a number')
             else:
-                if sum(choices) == roll:
+                if sum(choices) == roll and all(elem in box.pieces for elem in choices):
                     box.remove_pieces(choices)
                     change_roll = True
                     if len(box.pieces) == 0:
                         print('YOU WIN')
                         playing = False
-                elif sum(choices) != roll:
+                elif sum(choices) != roll or any(elem not in box.pieces for elem in choices):
                     print('doesnt add up')
                     change_roll = False
         elif box.combination_not_possible(roll):
@@ -478,13 +478,13 @@ def twenty_twelve():
                 change_roll = False
                 print('Oops, Looks like you forgot to type a number')
             else:
-                if sum(choices) == roll:
+                if sum(choices) == roll and all(elem in box.pieces for elem in choices):
                     box.remove_pieces(choices)
                     change_roll = True
                     if len(box.pieces) == 0:
                         print('YOU WIN')
                         playing = False
-                elif sum(choices) != roll:
+                elif sum(choices) != roll or any(elem not in box.pieces for elem in choices):
                     print('doesnt add up')
                     change_roll = False
         elif box.combination_not_possible(roll):
