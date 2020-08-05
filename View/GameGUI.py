@@ -11,9 +11,6 @@ class GameWindowStart(Frame):
         self.master = master
         self.master.title('fist window')
 
-        single_button = Button(self, text='Single Player', padx=10, pady=5)
-        single_button.place(x=125, y=100)
-
 
 if __name__ == '__main__':
     root = Tk()
