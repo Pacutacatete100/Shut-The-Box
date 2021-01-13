@@ -1,5 +1,5 @@
-from GameUtils import *
-from Box import Box
+from Game.Box import *
+from Game.GameUtils import *
 
 
 def play_base_game():

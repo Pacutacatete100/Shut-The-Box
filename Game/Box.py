@@ -5,6 +5,9 @@ class Box:
     def __init__(self, pieces):
         self.pieces = pieces
 
+    def get_pieces(self):
+        return self.pieces
+
     def print_remaining_pieces(self):
         for i in self.pieces:
             print(str(i) + " ", end='')

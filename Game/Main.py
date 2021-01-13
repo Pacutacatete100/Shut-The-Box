@@ -1,5 +1,4 @@
-from GameVariants import *
-
+from Game.GameVariants import *
 
 if __name__ == "__main__":
 
