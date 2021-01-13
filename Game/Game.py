@@ -1,5 +1,6 @@
-from Box import Box
-from GameUtils import *
+from Game.Box import Box
+from Game.GameUtils import *
+import random
 
 
 class Game:
@@ -28,34 +29,13 @@ class Game:
         roll_generator = roll_die(self.num_sides, self.number_of_die())
         return next(roll_generator)
 
-
-    def play_game(self):
-        playing = True
-        roll = 0
-
-        while playing:
-            self.box.print_remaining_pieces()
-            roll = self.get_next_roll()
-
-            if not self.box.combination_not_possible(roll):
-                choices = ask_numbers_to_remove()  # TODO: make this take in input from GUI buttons
-                if choices == 'end':
-                    # print('You ended the game, final score is ' + self.box.final_score())
-                    playing = False
-                elif not choices:
-                    self.change_roll = False
-                    # print('Oops, Looks like you forgot to type a number')
-                else:
-                    if sum(choices) == roll and all(elem in self.box.pieces for elem in choices):
-                        self.box.remove_pieces(choices)
-                        self.change_roll = True
-                        if len(self.box.pieces) == 0:
-                            print('YOU WIN')
-                            playing = False
-                    elif sum(choices) != roll or any(elem not in self.box.pieces for elem in choices):
-                        # print('doesnt add up')
-                        self.change_roll = False
-            elif self.box.combination_not_possible(roll):
-                self.box.loss_message()
+    def process_choices(self, choices, roll, playing):
+        if sum(choices) == roll and all(elem in self.box.pieces for elem in choices):
+            # disable buttons
+            self.change_roll = True
+            if len(self.box.pieces) == 0:
+                '''win'''
                 playing = False
-
+        elif sum(choices) != roll or any(elem not in self.box.pieces for elem in choices):
+            self.change_roll = False
+            '''doesnt add up'''
