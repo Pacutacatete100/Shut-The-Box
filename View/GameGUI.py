@@ -13,7 +13,7 @@ class MyFirstGUI:
         self.game = game
         self.total = 0
 
-        self.label = Label(root, text="Shut The Box GUI", font=('Arial', 18))
+        self.label = Label(root, text="Shut The Box", font=('Arial', 20))
         self.label.pack()
 
         self.start_game = Button(root, text='Start Game', font=('Arial', 18), height=1, width=10, command=lambda: self.play_game())
@@ -27,14 +27,11 @@ class MyFirstGUI:
 
         label1 = Label(root, text="You rolled a:", font=('Arial', 25), fg='red')
         label1.pack(side=TOP, pady=1)
-        roll = Label(root, text=(next(roll_die(6, 2))), font=('Arial', 25), fg='red')
-        roll.pack(side=TOP, pady=1)
+        roll_label = Label(root, text=(next(roll_die(6, 2))), font=('Arial', 25), fg='red')
+        roll_label.pack(side=TOP, pady=1)
 
         number_button_frame = Frame(self.root)
-        number_button_frame.pack(side=BOTTOM, pady=30)
-
-        end = Button(self.root, text='End Game', font=('Arial', 18), height=1, width=10)
-        end.pack(side=BOTTOM)
+        number_button_frame.pack(side=TOP, pady=30)
 
         buttons = []
 
@@ -46,19 +43,27 @@ class MyFirstGUI:
             button = Button(number_button_frame, text=n, font=('Arial', 18), height=1, width=2,
                             command=lambda num=n, i=index: [self.get_number_clicked(num), self.disable_button(i, buttons),
                                                             self.get_button_index(i)])
-            button.grid(padx=5, pady=2, row=3, column=index)
+            button.grid(padx=5, pady=2, row=2, column=index)
 
             buttons.append(button)
+
+        extra_button_frame = Frame(self.root)
+        extra_button_frame.pack(side=BOTTOM)
+
+        end = Button(extra_button_frame, text='End Game', font=('Arial', 13), height=1, width=13)
+        reset = Button(extra_button_frame, text='Reset Selection', font=('Arial', 13), height=1, width=13)
+        reset.grid(padx=5, pady=5, row=2)
+        end.grid(padx=5, pady=5, row=1)
 
         playing = True
         roll = 0
         change_roll = True
-        while playing:
-            number_of_die = self.game.number_of_die()
-            roll = self.game.get_next_roll()
-            roll.config(text='You rolled a ' + str(roll))
-            if not self.game.box.combination_not_possible(roll):
-                pass
+        # while playing:
+        #     number_of_die = self.game.number_of_die()
+        #     roll = self.game.get_next_roll()
+        #     roll_label.config(text='You rolled a ' + str(roll))
+        #     if not self.game.box.combination_not_possible(roll):
+        #         pass
                 # get user button choices
 
                 # if button is 'end' button, display lose message
@@ -88,4 +93,3 @@ if __name__ == '__main__':
     box = Box([1, 2, 3, 4, 5, 6, 7, 8, 9])
     game = Game(box)
     my_gui = MyFirstGUI(root, game)
-    # my_gui.play_game()
