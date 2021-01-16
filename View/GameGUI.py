@@ -2,7 +2,7 @@ from tkinter import *
 import random
 from Game.GameUtils import *
 from Game.Game import Game
-from Game.Box import *
+from Game.Box import Box
 
 
 class MyFirstGUI:
@@ -11,37 +11,81 @@ class MyFirstGUI:
         root.title("shut the box GUI")
         root.minsize(600, 300)
         self.game = game
+        self.total = 0
 
         self.label = Label(root, text="Shut The Box GUI", font=('Arial', 18))
         self.label.pack()
 
-        self.roll = Label(root, text=next(roll_die(6, 2)), font=('Arial', 25), fg='red')
-        self.roll.pack(side=TOP, pady=100)
+        self.start_game = Button(root, text='Start Game', font=('Arial', 18), height=1, width=10, command=lambda: self.play_game())
+        self.start_game.pack(side=BOTTOM, pady=100)
+
+        self.root.mainloop()  # keep this at bottom
+
+    def play_game(self):
+
+        self.start_game.destroy()
+
+        label1 = Label(root, text="You rolled a:", font=('Arial', 25), fg='red')
+        label1.pack(side=TOP, pady=1)
+        roll = Label(root, text=(next(roll_die(6, 2))), font=('Arial', 25), fg='red')
+        roll.pack(side=TOP, pady=1)
 
         number_button_frame = Frame(self.root)
         number_button_frame.pack(side=BOTTOM, pady=30)
 
-        self.number_buttons = {}
+        end = Button(self.root, text='End Game', font=('Arial', 18), height=1, width=10)
+        end.pack(side=BOTTOM)
 
-        for n in self.game.pieces:
-            self.number_buttons[n] = Button(number_button_frame, text=n, font=('Arial', 18), height=1, width=2, command=lambda num=n: [self.get_number_clicked(num), self.next_roll()])
-            self.number_buttons[n].pack(side=LEFT, padx=5)
+        buttons = []
 
-        self.root.mainloop()  # keep this at bottom
+        numbers = self.game.box.pieces
 
-    @staticmethod
-    def get_number_clicked(n):
-        print(n)
-        return int(n)
+        for index in range(len(numbers)):
+            n = numbers[index]
 
-    def next_roll(self):
-        next_roll = next(roll_die(6, 2))
-        self.roll.config(text=next_roll)
+            button = Button(number_button_frame, text=n, font=('Arial', 18), height=1, width=2,
+                            command=lambda num=n, i=index: [self.get_number_clicked(num), self.disable_button(i, buttons),
+                                                            self.get_button_index(i)])
+            button.grid(padx=5, pady=2, row=3, column=index)
+
+            buttons.append(button)
+
+        playing = True
+        roll = 0
+        change_roll = True
+        while playing:
+            number_of_die = self.game.number_of_die()
+            roll = self.game.get_next_roll()
+            roll.config(text='You rolled a ' + str(roll))
+            if not self.game.box.combination_not_possible(roll):
+                pass
+                # get user button choices
+
+                # if button is 'end' button, display lose message
+
+                # else, process choices (function of game object)
+
+            # if roll not possible, display lose message
 
 
+
+    def get_number_clicked(self, n):
+        return n
+
+    def get_button_index(self, i):
+        return i
+
+    def disable_button(self, i, buttons):
+        buttons[i].config(state='disabled')
+
+    # def next_roll(self):
+    #     next_roll = self.game.get_next_roll()
+    #     self.roll.config('text'="You rolled a " + str(next_roll))
 
 
 if __name__ == '__main__':
     root = Tk()
-    game = Game([1, 2, 3, 4, 5, 6, 7, 8, 9], 6)
+    box = Box([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    game = Game(box)
     my_gui = MyFirstGUI(root, game)
+    # my_gui.play_game()

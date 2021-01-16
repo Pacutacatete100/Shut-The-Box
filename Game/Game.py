@@ -4,10 +4,9 @@ import random
 
 
 class Game:
-    def __init__(self, pieces, num_sides):
-        self.pieces = pieces
-        self.num_sides = num_sides
-        self.box = Box(self.pieces)
+    def __init__(self, box):
+        self.num_sides = 6
+        self.box = box
         self.change_roll = True
 
 
@@ -34,8 +33,8 @@ class Game:
             # disable buttons
             self.change_roll = True
             if len(self.box.pieces) == 0:
-                '''win'''
                 playing = False
+                return 'win'
         elif sum(choices) != roll or any(elem not in self.box.pieces for elem in choices):
             self.change_roll = False
-            '''doesnt add up'''
+            return 'error'
